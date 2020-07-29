@@ -10,7 +10,7 @@ import org.springframework.http.MediaType
 @RequestMapping("/users")
 class UserEndpoint {
 	
-	@RequestMapping
+	@GetMapping
 	fun getUsers(): ReturnValue {
 		val result = ReturnValue()
 		result.listOfNames = "Yolanda, Maria, Eleni"
