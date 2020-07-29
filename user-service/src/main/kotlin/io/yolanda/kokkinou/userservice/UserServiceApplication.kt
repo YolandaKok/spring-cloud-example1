@@ -6,7 +6,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient
 import org.springframework.context.annotation.ComponentScan
 
 @SpringBootApplication
-//@EnableEurekaClient
+@EnableEurekaClient
 @ComponentScan("io.yolanda.kokkinou.*")
 class UserServiceApplication
 

@@ -5,14 +5,17 @@ import io.yolanda.kokkinou.dto.ReturnValue
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.http.MediaType
+import com.google.gson.Gson
 
 @RestController
 @RequestMapping("/users")
 class UserEndpoint {
-	@GetMapping
-	fun getUsers(): ReturnValue {
+	@RequestMapping("/")
+	fun getUsers(): String {
 		val result = ReturnValue()
-		result.listOfNames = "Yolanda, Maria, Eleni"		
-		return result
+		result.listOfNames = "Yolanda, Maria, Eleni"
+		val jsonString = Gson().toJson(result)
+		
+		return jsonString
 	}	
 }
