@@ -22,8 +22,10 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-	implementation("com.google.code.gson:gson:2.8.2")
+	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client") {
+		exclude(group = "com.fasterxml.jackson.dataformat", module = "jackson-dataformat-xml")	
+	}
+	//implementation("com.google.code.gson:gson:2.8.2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
