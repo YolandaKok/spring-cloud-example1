@@ -15,6 +15,7 @@ services:
    image: config-server
    ports:
     - 8888:8888
+   restart: always
    networks:
     - new-network
 
@@ -23,6 +24,7 @@ services:
    depends_on: 
     - config-server
     - discovery-server
+   restart: always
    ports:
     - 9000:9000
    networks:
@@ -33,6 +35,7 @@ services:
    depends_on: 
     - config-server
     - discovery-server
+   restart: always
    ports:
     - 9001:9001
    networks:
