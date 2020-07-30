@@ -28,6 +28,16 @@ services:
    networks:
     - new-network
 
+  user:
+   image: user
+   depends_on: 
+    - config-server
+    - discovery-server
+   ports:
+    - 9001:9001
+   networks:
+    - new-network
+
 networks:
    new-network:
     driver: bridge
