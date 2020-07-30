@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  discovery-server:
+    image: discovery-server
+    environment: 
+      - eureka.client.serviceUrl.defaultZone=http://discovery-server:8761/eureka/
+    restart: always
+    ports:
+      - 8761:8761
+    networks:
+      - new-network
+
+  config-server:
+   image: config-server
+   ports:
+    - 8888:8888
+   networks:
+    - new-network
+
+  proxy-service:
+   image: proxy-service
+   depends_on: 
+    - config-server
+    - discovery-server
+   ports:
+    - 9000:9000
+   networks:
+    - new-network
+
+networks:
+   new-network:
+    driver: bridge
