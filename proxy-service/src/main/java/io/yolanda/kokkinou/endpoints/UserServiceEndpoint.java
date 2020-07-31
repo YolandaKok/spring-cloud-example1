@@ -9,13 +9,14 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import io.yolanda.kokkinou.dto.UsersDTO;
 import io.yolanda.kokkinou.proxy.UserServiceProxy;
+import io.yolanda.kokkinou.services.UserService;
 
 @RestController
 @RequestMapping("/users")
 public class UserServiceEndpoint {
 	
 	@Autowired
-	private UserServiceProxy proxy;
+	private UserService service;
 	
 	@GetMapping("/hello")
 	public String returnHello() {
@@ -25,7 +26,7 @@ public class UserServiceEndpoint {
 	@GetMapping("/test")
 	@HystrixCommand(fallbackMethod = "defaultUserList")
 	public UsersDTO getUsers() {
-		return proxy.getUsers();
+		return service.getUsers();
 	}
 	
 	public UsersDTO defaultUserList() {
