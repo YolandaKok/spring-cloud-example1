@@ -2,6 +2,7 @@ version: '3'
 
 services:
   discovery-server:
+    build: ./discovery-server
     image: discovery-server
     environment: 
       - eureka.client.serviceUrl.defaultZone=http://discovery-server:8761/eureka/
@@ -12,6 +13,7 @@ services:
       - new-network
 
   config-server:
+   build: ./config-server
    image: config-server
    ports:
     - 8888:8888
@@ -20,6 +22,7 @@ services:
     - new-network
 
   proxy-service:
+   build: ./proxy-service
    image: proxy-service
    depends_on: 
     - config-server
@@ -31,6 +34,7 @@ services:
     - new-network
 
   user:
+   build: ./user-service
    image: user
    depends_on: 
     - config-server
