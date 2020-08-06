@@ -1,5 +1,7 @@
 package io.yolanda.kokkinou.endpoints;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import io.yolanda.kokkinou.services.UserService;
 @RequestMapping("/users")
 public class UserServiceEndpoint {
 	
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceEndpoint.class);	
 	@Autowired
 	private UserService service;
 	
@@ -23,9 +26,15 @@ public class UserServiceEndpoint {
 		return "hello";
 	}
 	
+	@GetMapping("/bye")
+	public String returnBye() {
+		return "bye";
+	}
+	
 	@GetMapping("/test")
 	@HystrixCommand(fallbackMethod = "defaultUserList")
 	public UsersDTO getUsers() {
+		logger.info("Getting users list.");
 		return service.getUsers();
 	}
 	

@@ -13,7 +13,7 @@ import io.yolanda.kokkinou.endpoints.UserServiceEndpoint;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients("io.yolanda")
-@ComponentScan("io.yolanda.kokkinou.*")
+@ComponentScan(basePackages = "io.yolanda.kokkinou.*")
 @EnableHystrix
 public class ProxyServiceApplication {
 

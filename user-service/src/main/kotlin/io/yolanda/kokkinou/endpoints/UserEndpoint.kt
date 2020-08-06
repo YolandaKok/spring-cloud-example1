@@ -20,5 +20,10 @@ class UserEndpoint {
 		val result = ReturnValue()
 		result.listOfNames = config.names
 		return result
-	}	
+	}
+	
+	@GetMapping("/test")
+	fun getTest(): String {
+		return "hello test";
+	}
 }
