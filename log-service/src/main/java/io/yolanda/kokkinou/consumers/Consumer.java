@@ -1,4 +1,4 @@
-package io.yolanda.kokkinou.kafka.producers;
+package io.yolanda.kokkinou.consumers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,7 @@ public class Consumer {
 	private final Logger logger = LoggerFactory.getLogger(Consumer.class);
 	
 	@KafkaListener(topics = "logs_topic", groupId = "group_id")
-	public void consume(LogMessage message){
+	public void consume(String message){
 		logger.info("--> Consumed Message: {}", message);
 	}
 }
