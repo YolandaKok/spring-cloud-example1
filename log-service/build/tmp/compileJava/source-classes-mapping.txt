@@ -1,0 +1,6 @@
+io/yolanda/kokkinou/config/Configuration.java
+ io.yolanda.kokkinou.config.Configuration
+io/yolanda/kokkinou/endpoints/TestEndpoint.java
+ io.yolanda.kokkinou.endpoints.TestEndpoint
+io/yolanda/kokkinou/logservice/LogServiceApplication.java
+ io.yolanda.kokkinou.logservice.LogServiceApplication

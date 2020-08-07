@@ -45,6 +45,18 @@ services:
    networks:
     - new-network
 
+  log-service:
+    build: ./log-service
+    image: log-service
+    depends_on:
+      - config-server
+      - discovery-server
+    restart: always
+    ports:
+      - 9002:9002
+    networks:
+      - new-network
+
   zookeeper:
    image: wurstmeister/zookeeper
    container_name: zookeeper

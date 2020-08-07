@@ -16,9 +16,7 @@ import io.yolanda.kokkinou.endpoints.UserServiceEndpoint;
 @ComponentScan(basePackages = "io.yolanda.kokkinou.*")
 @EnableHystrix
 public class ProxyServiceApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(ProxyServiceApplication.class, args);
 	}
-
 }
