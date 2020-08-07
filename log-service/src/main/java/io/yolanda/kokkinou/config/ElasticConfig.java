@@ -13,6 +13,9 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 @Configuration
 @EnableElasticsearchRepositories(basePackages = "io.yolanda.kokkinou.repositories")
 public class ElasticConfig {
+
+    // TODO: Put it on configuration file
+
     @Bean
     public RestHighLevelClient client() {
         ClientConfiguration clientConfiguration

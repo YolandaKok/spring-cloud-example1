@@ -9,6 +9,7 @@ public class LogMessage {
     @Id
     private String id;
     private String message;
+    // TODO: Add Date
     private Type type;
 
     public String getId() {return id;}
