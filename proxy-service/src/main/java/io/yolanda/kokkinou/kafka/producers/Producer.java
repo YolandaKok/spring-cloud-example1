@@ -1,5 +1,7 @@
 package io.yolanda.kokkinou.kafka.producers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +21,15 @@ public class Producer {
 	
 	public void sendMessages(LogMessage message) {
 		logger.info("Producing message: {}", message.toString());
-		kafkaTemplate.send(new ProducerRecord<>(TOPIC, null, message.toString()));
+		ObjectMapper Obj = new ObjectMapper();
+		String jsonStr;
+		try {
+			jsonStr = Obj.writeValueAsString(message);
+			kafkaTemplate.send(new ProducerRecord<>(TOPIC, null, jsonStr));
+		} catch (JsonProcessingException e) {
+			logger.error("Could not convert object to json: {}", message);
+			e.printStackTrace();
+		}
 	}
 	
 }
