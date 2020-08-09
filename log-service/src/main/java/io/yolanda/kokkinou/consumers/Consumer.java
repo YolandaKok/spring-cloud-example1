@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Service;
 
 import io.yolanda.kokkinou.dto.LogMessage;
@@ -20,7 +22,10 @@ public class Consumer {
 	private final Logger logger = LoggerFactory.getLogger(Consumer.class);
 	
 	@KafkaListener(topics = "logs_topic", groupId = "group_id")
-	public void consume(String message){
+	public void consume(String message, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
+						@Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition,
+						@Header(KafkaHeaders.OFFSET) String offset) {
+		logger.info("Partition: {} Offset {} Topic {}", partition, offset, topic);
 		ObjectMapper Obj = new ObjectMapper();
 		try {
 			LogMessage logMessage = Obj.readValue(message, LogMessage.class);
