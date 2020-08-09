@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import io.yolanda.kokkinou.dto.LogMessage;
 
+import java.util.Date;
+
 @Service
 public class Producer {
 	private static final Logger logger = LoggerFactory.getLogger(Producer.class);
@@ -21,6 +23,7 @@ public class Producer {
 	
 	public void sendMessages(LogMessage message) {
 		logger.info("Producing message: {}", message.toString());
+		message.setTimestamp(new Date());
 		ObjectMapper Obj = new ObjectMapper();
 		String jsonStr;
 		try {

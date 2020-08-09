@@ -3,14 +3,24 @@ package io.yolanda.kokkinou.dto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
+import java.util.Date;
+
 @Document(indexName = "log")
 public class LogMessage {
 
     @Id
     private String id;
     private String message;
-    // TODO: Add Date
+    private Date timestamp;
     private Type type;
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
 
     public String getId() {return id;}
 
@@ -33,6 +43,6 @@ public class LogMessage {
 
     @Override
     public String toString() {
-        return "LogMessage [message=" + message + ", type=" + type + "]";
+        return "LogMessage [message=" + message + ", timestamp=" + timestamp + ", type=" + type + "]";
     }
 }
