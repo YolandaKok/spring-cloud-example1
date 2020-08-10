@@ -25,13 +25,15 @@ public class Producer {
 		logger.info("Producing message: {}", message.toString());
 		message.setTimestamp(new Date());
 		ObjectMapper Obj = new ObjectMapper();
-		String jsonStr;
-		try {
-			jsonStr = Obj.writeValueAsString(message);
-			kafkaTemplate.send(new ProducerRecord<>(TOPIC, null, jsonStr));
-		} catch (JsonProcessingException e) {
-			logger.error("Could not convert object to json: {}", message);
-			e.printStackTrace();
+		for(int i = 0; i < 100; i++) {
+			String jsonStr;
+			try {
+				jsonStr = Obj.writeValueAsString(message);
+				kafkaTemplate.send(new ProducerRecord<>(TOPIC, null, jsonStr));
+			} catch (JsonProcessingException e) {
+				logger.error("Could not convert object to json: {}", message);
+				e.printStackTrace();
+			}
 		}
 	}
 	
